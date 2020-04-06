@@ -1,7 +1,10 @@
 package by.epam.ekids;
 
+import by.epam.ekids.kitchen.Cook;
 import by.epam.ekids.recepies.Recipe;
-import by.epam.ekids.recepies.RecipePrinter;
+import by.epam.ekids.recepies.RecipeService;
+
+import java.time.Duration;
 
 public class Main {
 
@@ -42,9 +45,9 @@ public class Main {
     private static String user = "Степан";
     private static int count = 10;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        printMe("Hello world!", 4);
+        printMe("Hello world!", 1);
 
         printMe(String.format("Привет %s, мы тебя поприветствуем %d раз", user, count), count);
 
@@ -54,14 +57,20 @@ public class Main {
         Recipe pizza = new Recipe("ПИЦЦУНЯ", new String[]{"тесто", "сыр", "грибочки"},
                 "Взять ингридиенты, замесить %s, добавить %s и %s. Отправить в печь при 120 °C");
 
-        RecipePrinter.print(pelmeni);
-        RecipePrinter.print(pizza);
+        RecipeService.printRecipe(pelmeni);
+        RecipeService.printRecipe(pizza);
 
         // с помощью set методов задаем его поля (ингридиенты и инструкцию по приготовлению)
         pelmeni.setIngredients(new String[]{"мясо", "тесто", "маянезик"});
         pelmeni.setInstructions("Надеть маску от короны. Сходить в магазин, купить %s, %s. Слепить пельмени. \nСварить. Полить %s.");
 
-        RecipePrinter.print(pelmeni);
+        RecipeService.printRecipe(pelmeni);
+
+        //здесь мы уже можем готовить блюда - создаем повара и рецепт у которого есть время приготовления
+        Cook stevenSeagal  = new Cook("Steven Seagal", 100);
+        Recipe shavuha = new Recipe("ШАВУХА", new String[]{"мясо", "лаваш", "овощи"},
+                "Срезать %s с вертела, положить в %s. Добавить %s и завернуть.", Duration.parse("PT15M"));
+        RecipeService.printCookingProcess(shavuha, stevenSeagal);
     }
 
     private static void printMe(String message, int howMany) {

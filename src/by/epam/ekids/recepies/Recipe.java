@@ -1,5 +1,6 @@
 package by.epam.ekids.recepies;
 
+import java.time.Duration;
 import java.util.Arrays;
 
 //DATA класс
@@ -9,12 +10,20 @@ public class Recipe {
     private String name;
     private String[] ingredients;
     private String instructions;
+    private Duration timeToCook;
 
     // !!!КОНСТРУКТОРЫ!!!
     public Recipe(String aName, String[] ingredients, String instructions) {
         name = aName;
         this.ingredients = ingredients;
         this.instructions = instructions;
+    }
+
+    public Recipe(String aName, String[] ingredients, String instructions, Duration timeToCook) {
+        name = aName;
+        this.ingredients = ingredients;
+        this.instructions = instructions;
+        this.timeToCook = timeToCook;
     }
 
     public Recipe() {
@@ -35,6 +44,10 @@ public class Recipe {
         return instructions;
     }
 
+    public Duration getTimeToCook() {
+        return timeToCook;
+    }
+
     // с помощью set методов обеспечиваем заполнение внутренних полей класса (String[] ingredients и String instructions)
     public void setName(String name) {
         this.name = name;
@@ -46,6 +59,10 @@ public class Recipe {
 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
+    }
+
+    public void setTimeToCook(Duration timeToCook) {
+        this.timeToCook = timeToCook;
     }
 
     // !!!ОСТАЛЬНЫЙ МЕТОДЫ!!!
