@@ -11,10 +11,13 @@ public class CookingRecipe extends RecipeRecord implements HaveCookingTime {
 
     private Duration timeToCook;
 
-    public CookingRecipe(String aName, String[] ingredients, String instructions, Duration duration) {
+    private String typeCuisine;
+
+    public CookingRecipe(String aName, String[] ingredients, String instructions, Duration duration, String typeCuisine) {
         //  super - обращение к соответствующей конструкции в наследуемом классе
         super(aName, ingredients, instructions);
         timeToCook = duration;
+        this.typeCuisine = typeCuisine;
     }
 
     public Duration getTimeToCook() {
@@ -23,6 +26,14 @@ public class CookingRecipe extends RecipeRecord implements HaveCookingTime {
 
     public void setTimeToCook(Duration timeToCook) {
         this.timeToCook = timeToCook;
+    }
+
+    public String getTypeCuisine() {
+        return typeCuisine;
+    }
+
+    public void setTypeCuisine(String typeCuisine) {
+        this.typeCuisine = typeCuisine;
     }
 
     //012

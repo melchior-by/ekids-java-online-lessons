@@ -1,28 +1,23 @@
 package by.epam.ekids.kitchen;
 
-public class Cook {
+//abstract - запрещает создавать объекты, показывает что это базовый класс для построения можели наследования
+public abstract class Cook {
     private String name;
     //1..100
     private Integer coolness;
 
-    private String speciality;
-
-    public Cook(String name, Integer coolness, String speciality) {
+    public Cook(String name, Integer coolness) {
         this.name = name;
         this.coolness = coolness;
-        this.speciality = speciality;
     }
 
+    // могут быть как полноценные методы
     public String getName() {
         return name;
     }
 
     public Integer getCoolness() {
         return coolness;
-    }
-
-    public String getSpeciality() {
-        return speciality;
     }
 
     public void setName(String name) {
@@ -33,7 +28,7 @@ public class Cook {
         this.coolness = coolness;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
-    }
+    //так и абстрактные
+    public abstract void sayHi();
+
 }
