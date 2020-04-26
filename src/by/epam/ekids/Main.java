@@ -1,8 +1,9 @@
 package by.epam.ekids;
 
 import by.epam.ekids.kitchen.Cook;
+import by.epam.ekids.kitchen.FamousCook;
+import by.epam.ekids.kitchen.McDonaldsCook;
 import by.epam.ekids.recepies.CookingRecipe;
-import by.epam.ekids.recepies.Recipe;
 import by.epam.ekids.recepies.RecipeRecord;
 import by.epam.ekids.recepies.RecipeService;
 
@@ -44,6 +45,22 @@ public class Main {
      *  ***************
     * */
 
+
+    /*
+    *  Наследование:
+    *  1. наследование от 1 класса (в Java)
+    *  Домашние котеечки (мешать, повелевать Интернетом) <- Кошачьи (мурчать, иметь крутой хвост, видят в темноте) <- Животное(едят, какают, спят)
+    *  Тигры (убить) <- Кошачьи (мурчать, иметь крутой хвост, видят в темноте) <- Животное(едят, какают, спят)
+    *
+    *  2. наследование от нескольких классов (нет в Java, C++)
+    *                       <- Кошачьи (мурчать, иметь крутой хвост, видят в темноте) <- Животное(едят, какают, спят)
+    *  Котопес (быть милым)
+    *                       <- Собачьи (умение выть, видят в темноте)
+    *
+    *  ***Чтобы не столкнуться с проблемами множественного наследования в Java выбрали 1 тип реализации наследования и добавили Интерфейсы***
+    *
+    * */
+
     private static String user = "Степан";
     private static int count = 10;
 
@@ -69,10 +86,17 @@ public class Main {
         RecipeService.printRecipe(pelmeni);
 
         //здесь мы уже можем готовить блюда - создаем повара и рецепт у которого есть время приготовления
-        Cook stevenSeagal  = new Cook("Steven Seagal", 100, "Chinese");
+        FamousCook stevenSeagal  = new FamousCook("Steven Seagal", 100, 1);
         CookingRecipe shavuha = new CookingRecipe("ШАВУХА", new String[]{"мясо", "лаваш", "овощи"},
-                "Срезать %s с вертела, положить в %s. Добавить %s и завернуть.", Duration.parse("PT15M"));
+                "Срезать %s с вертела, положить в %s. Добавить %s и завернуть.", Duration.parse("PT15M"), "Middle-east");
         RecipeService.printCookingProcess(shavuha, stevenSeagal);
+
+        /* переходим на приготовление американских блюд*/
+
+        Cook gordonRamsy  = new McDonaldsCook("Gordon Ramsy", 100);
+        CookingRecipe burger = new CookingRecipe("БУРГЕР", new String[]{"котлетка", "булочка", "овощи"},
+                "Пожарить %s, разрезать %s и добавить %s", Duration.parse("PT10M"), "American");
+        RecipeService.printCookingProcess(burger, gordonRamsy);
     }
 
     private static void printMe(String message, int howMany) {

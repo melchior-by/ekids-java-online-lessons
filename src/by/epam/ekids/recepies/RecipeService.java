@@ -1,5 +1,6 @@
 package by.epam.ekids.recepies;
 
+import by.epam.ekids.kitchen.AmericanFoodCooking;
 import by.epam.ekids.kitchen.Cook;
 
 import java.util.Arrays;
@@ -20,23 +21,29 @@ public class RecipeService {
     public static void printCookingProcess(CookingRecipe recipe, Cook cook) throws InterruptedException {
         String cookName = cook.getName();
         String recipeName = recipe.getName();
-        String speciality = cook.getSpeciality();
 
-        System.out.println(
-                "\nПовар " + cookName + " гуру " + speciality + " кухни приступил к приготовлению " + recipeName);
-        System.out.println(cookName + " готовит блюдо в следующей последовтельности: ");
+        //с помощью instanceof мы проверяем что объект реализует интерфейс AmericanFoodCooking
+        if (recipe.getTypeCuisine().equals("American") || cook instanceof AmericanFoodCooking) {
+            System.out.println("\nНаш повар может готовить американский блюда");
+            System.out.println(cookName + " готовит блюдо в следующей последовтельности: ");
 
-        // сервисные переменные чтобы красиво распечатать
-        String beautyInstruction = String
-                .format(recipe.getInstructions(), recipe.getIngredients()[0], recipe.getIngredients()[1], recipe.getIngredients()[2]);
+            // сервисные переменные чтобы красиво распечатать
+            String beautyInstruction = String
+                    .format(recipe.getInstructions(), recipe.getIngredients()[0], recipe.getIngredients()[1], recipe.getIngredients()[2]);
 
-        System.out.println(beautyInstruction);
-        System.out.println("Время приготовления: " + getTimeToCook(recipe, cook));
-        //эмулируем время приготовления
-        Thread.sleep(5000);
-        System.out.println("Блюдо " + recipeName + " приготовлено");
-        System.out.println("Зацени какой у нас повар крутой, оригинальное время приготовления рецепта - " + recipe
-                .getCookingTime());
+            System.out.println(beautyInstruction);
+            System.out.println("Время приготовления: " + getTimeToCook(recipe, cook));
+            //эмулируем время приготовления
+            Thread.sleep(5000);
+            System.out.println("Блюдо " + recipeName + " приготовлено");
+            System.out.println("Зацени какой у нас повар крутой, оригинальное время приготовления рецепта - " + recipe
+                    .getCookingTime());
+        } else {
+            System.out.println("\nНаш повар не может готовить американский блюда");
+        }
+
+
+
     }
 
     private static String getTimeToCook(CookingRecipe recipe, Cook cook) {
