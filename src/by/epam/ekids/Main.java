@@ -1,5 +1,8 @@
 package by.epam.ekids;
 
+import by.epam.ekids.cybersport.Match;
+import by.epam.ekids.cybersport.Player;
+import by.epam.ekids.cybersport.Tournament;
 import by.epam.ekids.kitchen.Cook;
 import by.epam.ekids.kitchen.FamousCook;
 import by.epam.ekids.kitchen.McDonaldsCook;
@@ -8,6 +11,8 @@ import by.epam.ekids.recepies.RecipeRecord;
 import by.epam.ekids.recepies.RecipeService;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -35,7 +40,7 @@ public class Main {
     *  *  4  * --
     *  *  5  *  |
     *  ******   |
-    *           |
+    *           |  =
     *   HEAP    |
      *  ***************
      *  *  1   52.1    * Double a = 52.1;
@@ -44,7 +49,6 @@ public class Main {
      *  *     100500   *
      *  ***************
     * */
-
 
     /*
     *  Наследование:
@@ -64,7 +68,8 @@ public class Main {
     private static String user = "Степан";
     private static int count = 10;
 
-    public static void main(String[] args) throws InterruptedException {
+    //главный метод для уроков 1-5, никогда! не называйте так методы
+    public static void lessons_1_5_main(String[] args) throws InterruptedException {
 
         printMe("Hello world!", 1);
 
@@ -104,4 +109,30 @@ public class Main {
             System.out.println(message);
         }
     }
+
+    public static void main(String[] args) {
+        Player jove = new Player("Jove", 10);
+        Player lewsha = new Player("Lewsha", 100);
+
+        /*
+        *  ArrayList имплементит интерфейс List
+        *  это самая простая коллекция - выглядит как список в который вы заносите элементы
+        *  список автоматически расширяется и сжимается когда это нужно.
+        *  Рекомендуемый способ создания ArrayList:
+        *  Ссылка типа List указывающая на обект хранящий в себе Player = new ArrayList<>();
+        *  В <> указываем тип хранимых объектов
+        *  Поскольку мы указали какие объекты мы будем хранить в самой ссылке - после new ArrayList можем оставить пустые  <>
+        * */
+        List<Player> team1 = new ArrayList<>();
+        //метод add() используется для добавления элементов в List
+        team1.add(jove);
+
+        List<Player> team2 = new ArrayList<>();
+        team2.add(lewsha);
+
+        Match round1 = new Match(team1, team2);
+        Tournament minskCup = new Tournament("Minsk Cup", new String[]{"Microsoft", "Apple"}, round1);
+        minskCup.run();
+    }
+
 }
